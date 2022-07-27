@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import IconLabelButtons from "./Components/Buttons";
+import axios from "axios";
+import { useEffect } from "react";
 
-function App() {
+const App: React.FC = () => {
+  useEffect(() => {
+    // const access_token =
+    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFib29kaGFuYWZpMTBAZ21haWwuY29tIiwibmFtZSI6IkFiZHVsUmFobWFuIiwiaWF0IjoxNjU4NzQ4MTY1fQ.xMc8yjNQQm-RSCvr9aoSh0EqkKkbw-u9nYCAvd91nBw";
+    axios
+      .post("https://pro-commerce1.herokuapp.com/api/v1/login", {
+        email: "aboodhanafi10@gmail.com",
+        password: "0592798686An!@#",
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <IconLabelButtons />
     </div>
   );
-}
+};
 
 export default App;
