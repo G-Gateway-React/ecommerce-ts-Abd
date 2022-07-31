@@ -12,9 +12,7 @@ const App: React.FC = () => {
         email: "aboodhanafi10@gmail.com",
         password: "0592798686An!@#",
       })
-      .then((res) => {
-        //console.log(res.data);
-      })
+      .then((res) => {})
       .catch((error) => {
         // console.error(error);
       });
