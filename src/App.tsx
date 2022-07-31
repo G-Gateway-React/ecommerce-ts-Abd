@@ -13,17 +13,15 @@ const App: React.FC = () => {
         password: "0592798686An!@#",
       })
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
       })
       .catch((error) => {
-        console.error(error);
+        // console.error(error);
       });
   });
   return (
     <div className="App">
-        <Home/>
-    
-    
+      <Home />
     </div>
   );
 };
