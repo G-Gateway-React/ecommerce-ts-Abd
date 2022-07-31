@@ -1,48 +1,61 @@
-import Logo from "./logo.png";
-import Hero from "./hero.jpg";
+import React from "react";
+import Logo from "./logo.png"
+import Hero from "./hero.jpg"
 
-export const Images = {
-  Logo,
-  Hero,
-};
+export const Images={
 
-export const LeftNavbarData = [
-  {
-    text: "NEW ARRIVALS",
-    path: "/newarrivals",
-    id: 1,
-  },
+    Logo,
+    Hero,
+}
 
-  {
-    text: "SHOP",
-    path: "/shop",
-    id: 2,
-  },
-  {
-    text: "COLLECTIONS",
-    path: "/collection",
-    id: 3,
-  },
+
+export const LeftNavbarData=
+[
+    {
+        
+    text :'NEW ARRIVALS',
+    path :'/newarrivals',
+},
+
+    {
+
+    text : 'SHOP',
+    path : '/shop',
+},
+    {
+
+    text :'COLLECTIONS',
+    path :'/collection',
+},
+
+
+
 ];
 
-export const RightNavbarData = [
-  {
-    text: "SEARCH",
-    id: 1,
-  },
 
-  {
-    text: "SIGN IN",
-    path: "/SIGN IN",
-    id: 2,
-  },
-  {
-    text: "BAG (2)",
-    path: "/BAG",
-    id: 3,
-  },
-  {
-    icon: "whishlist",
-    id: 4,
-  },
+export const RightNavbarData=
+[
+    {
+    
+      text : 'SEARCH',
+},
+
+    {
+        text :'SIGN IN',
+        path :'/SIGN IN',
+},
+    {
+     
+        text :'BAG (2)',
+        path :'/BAG',
+  
+},
+{
+     
+  icon:"whishlist"
+
+},
 ];
+
+
+
