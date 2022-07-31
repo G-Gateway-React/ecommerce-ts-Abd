@@ -1,7 +1,7 @@
 import "./App.css";
-import IconLabelButtons from "./Components/Buttons";
 import axios from "axios";
 import { useEffect } from "react";
+import Home from "./Screen/Home";
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -21,7 +21,9 @@ const App: React.FC = () => {
   });
   return (
     <div className="App">
-      <IconLabelButtons />
+        <Home/>
+    
+    
     </div>
   );
 };
