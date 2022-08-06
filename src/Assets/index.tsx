@@ -36,32 +36,37 @@ export const LeftNavbarData=
 
 
 
+=======
+import Logo from "./logo.png";
+import Hero from "./hero.jpg";
+import { useSelector } from "react-redux";
+import { RootState } from "../Redux";
+
+export const Images = {
+  Logo,
+  Hero,
+};
+
+export const LeftNavbarData = [
+  {
+    text: "NEW ARRIVALS",
+    path: "/newarrivals",
+    id: 1,
+  },
+
+  {
+    text: "SHOP",
+    path: "/shop",
+    id: 2,
+  },
+  {
+    text: "COLLECTIONS",
+    path: "/collection",
+    id: 3,
+  },
 ];
 
 
-export const RightNavbarData=
-[
-    {
-    
-      text : 'SEARCH',
-},
-
-    {
-        text :'SIGN IN',
-        path :'/SIGN IN',
-},
-    {
-     
-        text :'BAG (2)',
-        path :'/BAG',
-  
-},
-{
-     
-  icon:"whishlist"
-
-},
-];
 
 
 export const ImagesCard=
@@ -102,3 +107,4 @@ export const ImagesCard=
  },
  
 ];
+

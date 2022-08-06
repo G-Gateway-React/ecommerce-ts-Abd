@@ -1,23 +1,23 @@
-import React from 'react';
-import ImgMediaCard from '../../Components/Card';
-import Hero from '../../Components/Hero';
-import { Tital } from './style';
 
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import Hero from "../../Components/Hero";
+import { logout } from "../../Redux/features/Auth/authSlice";
 
 const Home: React.FC = () => {
-
-
-    return (
-        <div>
-           
-       <Hero/>
-       <Tital><span>CATEGOR</span>IES</Tital>  
-       <ImgMediaCard/>
-
-        </div>
-    );
-}
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login");
+  };
+  return (
+    <div>
+      <Hero />
+      <button onClick={handleLogout}>logout</button>
+      <Link to={"/login"}>login </Link>
+    </div>
+  );
+};
 
 export default Home;
-
-
