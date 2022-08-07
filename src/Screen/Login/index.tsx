@@ -1,7 +1,6 @@
 import { Button, FormGroup, Input, TextField } from "@mui/material";
 import axios from "axios";
-import { error } from "console";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -13,13 +12,14 @@ import { login } from "../../Redux/features/Auth/authSlice";
 
 const Login = () => {
   const isAuthed = useSelector((state: RootState) => state.auth.isAuthed);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { values, handelChange } = useForm({
     email: "",
     password: "",
   });
+  const [show, setShow] = useState(false);
+
   const handleLogin = async (email: string, password: string) => {
     const res = await axios
       .post("https://pro-commerce1.herokuapp.com/api/v1/login", {
@@ -27,7 +27,6 @@ const Login = () => {
         password: password,
       })
       .catch((error) => {});
-    console.log(res);
 
     if (res) {
       localStorage.setItem("userToken", res.data.token);
@@ -37,18 +36,18 @@ const Login = () => {
       return null;
     }
   };
-  const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (e) => {
+  const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     handleLogin(values.email, values.password);
 
     setTimeout(() => {
       const result = localStorage.getItem("userToken");
       if (result !== null) {
-        dispatch(login());
+        dispatch(login(result));
       }
     }, 1000);
   };
-  const handleEnter: React.KeyboardEventHandler<HTMLDivElement> = async (e) => {
+  const handleEnter: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       handleLogin(values.email, values.password);
@@ -56,7 +55,7 @@ const Login = () => {
       setTimeout(() => {
         const result = localStorage.getItem("userToken");
         if (result !== null) {
-          dispatch(login());
+          dispatch(login(result));
         }
       }, 1000);
     }
@@ -84,17 +83,26 @@ const Login = () => {
               value={values.email}
               autoFocus
             />
+            <div
+              style={{
+                display: "flex",
+              }}
+            >
+              <TextField
+                onChange={handelChange}
+                onKeyPress={handleEnter}
+                name="password"
+                type={show ? "text" : "password"}
+                id="password"
+                label="password"
+                variant="standard"
+                value={values.password}
+              />
+              <Button onClick={() => setShow(!show)}>
+                {show ? "hide" : "show"}
+              </Button>
+            </div>
 
-            <TextField
-              onChange={handelChange}
-              onKeyPress={handleEnter}
-              name="password"
-              type="password"
-              id="password"
-              label="password"
-              variant="standard"
-              value={values.password}
-            />
             <Button onClick={handleClick}> login </Button>
           </FormGroup>
         </FlexBox>

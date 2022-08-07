@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 let Authed_Storage_Key = "authed";
 export interface AuthState {
@@ -19,8 +19,8 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (state) => {
-      state.userToken = localStorage.getItem("userToken");
+    login: (state, action: PayloadAction<string>) => {
+      state.userToken = action.payload;
       localStorage.setItem(Authed_Storage_Key, "1");
       state.isAuthed = true;
     },
