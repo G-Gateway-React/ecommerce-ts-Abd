@@ -52,9 +52,7 @@ top:80%;
 visibility:hidden;
 color:#fff;
 font-size:35px;
-
   
-   
 
 ` 
 
