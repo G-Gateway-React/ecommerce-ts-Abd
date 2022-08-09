@@ -29,7 +29,7 @@ const NavBar: React.FC<NavbarProps> = (props) => {
         {LeftNavbarData.map((item) => {
           return (
             <Item key={item.id} style={props.style}>
-              {item.text}
+              <Link to={item.path}>{item.text}</Link>
             </Item>
           );
         })}
@@ -48,7 +48,7 @@ const NavBar: React.FC<NavbarProps> = (props) => {
             })
           : AuthedRightNavbarData.map((item) => {
               return (
-                <Item key={item.id} style={props.style}>
+                <Item key={item.id}>
                   {item.text !== "LOG OUT" ? (
                     <Link to={item.path}>
                       {item.text ? item.text : <FavoriteBorderIcon />}
@@ -56,8 +56,8 @@ const NavBar: React.FC<NavbarProps> = (props) => {
                   ) : (
                     <Item
                       key={item.id}
-                      style={props.style}
                       onClick={handleLogout}
+                      style={{ cursor: "pointer" }}
                     >
                       {item.text}
                     </Item>

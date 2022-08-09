@@ -14,18 +14,18 @@ export const Images = {
 export const LeftNavbarData = [
   {
     text: "NEW ARRIVALS",
-    path: "/newarrivals",
+    path: "/",
     id: 1,
   },
 
   {
     text: "SHOP",
-    path: "/shop",
+    path: "/",
     id: 2,
   },
   {
     text: "COLLECTIONS",
-    path: "/collection",
+    path: "/",
     id: 3,
   },
 ];

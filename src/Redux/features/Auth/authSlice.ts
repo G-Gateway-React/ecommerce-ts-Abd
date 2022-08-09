@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 let Authed_Storage_Key = "authed";
 export interface AuthState {
   isAuthed: boolean;
-  userToken?: any;
+  userToken?: string | null;
 }
 
 export interface actionType {
