@@ -1,20 +1,25 @@
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import ImgMediaCard from "../../Components/Card";
-import Hero from "../../Components/Hero";
-import { logout } from "../../Redux/features/Auth/authSlice";
-import { Tital } from "./style";
+import React from 'react';
+import ImgMediaCard from '../../Components/Card';
+import Hero from '../../Components/Hero';
+import SecoCard from '../../Components/SecoCard';
+import {H3, Tital } from './style';
+
 
 const Home: React.FC = () => {
-  return (
-    <div>
-      <Hero />
-      <Tital>
-        <span>CATEGOR</span>IES
-      </Tital>
-      <ImgMediaCard />
-    </div>
-  );
-};
+
+
+    return (
+        <div>
+           
+       <Hero/>
+       <Tital><span>CATEGOR</span>IES</Tital>  
+       <ImgMediaCard/>
+       <H3>NEW BOOTS ADDED RECENTLY</H3>
+      <SecoCard/>
+     
+        </div>
+    );
+}
+
 
 export default Home;
