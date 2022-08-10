@@ -1,23 +1,22 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { RootState } from "../..";
 
-// export const HandleLogin = async (email: string, password: string) => {
-//   const data = useSelector((state: RootState) => state.auth.isAuthed);
-//   log
+export interface actionType {
+  email: string;
+  password: string;
+}
 
-//   const res = await axios.post(
-//     "https://pro-commerce1.herokuapp.com/api/v1/login",
-//     {
-//       email: email,
-//       password: password,
-//     }
-//   );
-//   console.log(res);
+export const fetchToken = createAsyncThunk(
+  "login/user",
+  async (data: actionType) => {
+    const response = await axios.post(
+      "https://pro-commerce1.herokuapp.com/api/v1/login",
+      {
+        email: data.email,
+        password: data.password,
+      }
+    );
 
-//   if (res.status !== 200) {
-//     localStorage.setItem("userToken", res.data.token);
-//   }
-//   return res;
-// };
+    return response;
+  }
+);

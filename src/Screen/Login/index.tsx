@@ -3,12 +3,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../../Components/NavBar";
 import { Container, FlexBox } from "../../GlobelStyle";
 import useForm from "../../hooks/useForm";
 import { RootState } from "../../Redux";
-import { login } from "../../Redux/features/Auth/authSlice";
+import { login, testLogin } from "../../Redux/features/Auth/authSlice";
 
 const Login = () => {
   const isAuthed = useSelector((state: RootState) => state.auth.isAuthed);
@@ -38,14 +38,18 @@ const Login = () => {
   };
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    handleLogin(values.email, values.password);
+    const obj = {
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(testLogin(obj));
 
-    setTimeout(() => {
-      const result = localStorage.getItem("userToken");
-      if (result !== null) {
-        dispatch(login(result));
-      }
-    }, 1000);
+    // setTimeout(() => {
+    //   const result = localStorage.getItem("userToken");
+    //   if (result !== null) {
+    //     dispatch(login(result));
+    //   }
+    // }, 1000);
   };
   const handleEnter: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (e.key === "Enter") {
@@ -101,6 +105,7 @@ const Login = () => {
               <Button onClick={() => setShow(!show)}>
                 {show ? "hide" : "show"}
               </Button>
+              <Link to={"/signup"}> I dont have account</Link>
             </div>
 
             <Button onClick={handleClick}> login </Button>

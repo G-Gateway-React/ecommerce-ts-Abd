@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../Redux";
 import { logout } from "../../Redux/features/Auth/authSlice";
 import { useDispatch } from "react-redux";
+import { Container } from "@mui/material";
 interface NavbarProps {
   style?: React.CSSProperties;
 }
@@ -24,49 +25,51 @@ const NavBar: React.FC<NavbarProps> = (props) => {
     navigate("/login");
   };
   return (
-    <NavWrapper>
-      <LeftSection>
-        {LeftNavbarData.map((item) => {
-          return (
-            <Item key={item.id} style={props.style}>
-              <Link to={item.path}>{item.text}</Link>
-            </Item>
-          );
-        })}
-      </LeftSection>
-      <Logo style={{ backgroundColor: "black" }} />
-      <RightSection>
-        {!isAuthed
-          ? RightNavbarData.map((item) => {
-              return (
-                <Item key={item.id} style={props.style}>
-                  <Link to={item.path}>
-                    {item.text ? item.text : <FavoriteBorderIcon />}
-                  </Link>
-                </Item>
-              );
-            })
-          : AuthedRightNavbarData.map((item) => {
-              return (
-                <Item key={item.id}>
-                  {item.text !== "LOG OUT" ? (
+    <Container>
+      <NavWrapper>
+        <LeftSection>
+          {LeftNavbarData.map((item) => {
+            return (
+              <Item key={item.id} style={props.style}>
+                <Link to={item.path}>{item.text}</Link>
+              </Item>
+            );
+          })}
+        </LeftSection>
+        <Logo style={{ backgroundColor: "black" }} />
+        <RightSection>
+          {!isAuthed
+            ? RightNavbarData.map((item) => {
+                return (
+                  <Item key={item.id} style={props.style}>
                     <Link to={item.path}>
                       {item.text ? item.text : <FavoriteBorderIcon />}
                     </Link>
-                  ) : (
-                    <Item
-                      key={item.id}
-                      onClick={handleLogout}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {item.text}
-                    </Item>
-                  )}
-                </Item>
-              );
-            })}
-      </RightSection>
-    </NavWrapper>
+                  </Item>
+                );
+              })
+            : AuthedRightNavbarData.map((item) => {
+                return (
+                  <Item key={item.id} style={props.style}>
+                    {item.text !== "LOG OUT" ? (
+                      <Link to={item.path}>
+                        {item.text ? item.text : <FavoriteBorderIcon />}
+                      </Link>
+                    ) : (
+                      <Item
+                        key={item.id}
+                        onClick={handleLogout}
+                        style={{ cursor: "pointer", color: "black" }}
+                      >
+                        {item.text}
+                      </Item>
+                    )}
+                  </Item>
+                );
+              })}
+        </RightSection>
+      </NavWrapper>
+    </Container>
   );
 };
 

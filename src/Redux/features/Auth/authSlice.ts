@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchToken } from "./authAction";
 
 let Authed_Storage_Key = "authed";
 export interface AuthState {
@@ -30,6 +31,11 @@ export const authSlice = createSlice({
       localStorage.removeItem("userToken");
       localStorage.removeItem(Authed_Storage_Key);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchToken.pending, (state, action) => {
+      console.log(action.payload);
+    });
   },
 });
 
