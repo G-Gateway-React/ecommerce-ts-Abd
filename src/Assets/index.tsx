@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "./logo.png";
 import Hero from "./hero.jpg";
 import Img1 from "./imgCard1.png";
@@ -43,88 +42,132 @@ export const LeftNavbarData=
 
 
 
+export const Images = {
+  Logo,
+  Hero,
+};
+
+export const LeftNavbarData = [
+  {
+    text: "NEW ARRIVALS",
+    path: "/",
+    id: 1,
+  },
+
+  {
+    text: "SHOP",
+    path: "/",
+    id: 2,
+  },
+  {
+    text: "COLLECTIONS",
+    path: "/",
+    id: 3,
+  },
+];
+
+export const RightNavbarData = [
+  {
+    text: "SEARCH",
+    path: "/",
+    id: 1,
+  },
+
+  {
+    text: "SIGN IN",
+    path: "/login",
+    id: 2,
+  },
+  {
+    text: "BAG (2)",
+    path: "/",
+    id: 3,
+  },
+  {
+    icon: "whishlist",
+    path: "/",
+    id: 4,
+  },
+];
+export const AuthedRightNavbarData = [
+  {
+    text: "SEARCH",
+    path: "/",
+    id: 1,
+  },
+
+  {
+    text: "LOG OUT",
+    path: "/logout",
+    id: 2,
+  },
+  {
+    text: "BAG (2)",
+    path: "/",
+    id: 3,
+  },
+  {
+    icon: "whishlist",
+    path: "/",
+    id: 4,
+  },
 ];
 
 
-export const RightNavbarData=
-[
-    {
-    
-      text : 'SEARCH',
-},
+export const ImagesCard = [
+  {
+    img: Img1,
+    text: "Jumpsuits",
+    id: 1,
+  },
 
-    {
-        text :'SIGN IN',
-        path :'/SIGN IN',
-},
-    {
-     
-        text :'BAG (2)',
-        path :'/BAG',
-  
-},
-{
-     
-  icon:"whishlist"
+  {
+    img: Img2,
+    text: "Tops",
+    id: 2,
+  },
 
-},
-];
+  {
+    img: Img3,
+    text: "Shorts",
+    id: 3,
+  },
 
+  {
+    img: Img4,
+    text: "Knitwear",
+    id: 4,
+  },
+  {
+    img: Img5,
+    text: "Jackets",
+    id: 5,
+  },
 
-export const ImagesCard=
-[
-    {
-        
-   img: Img1,
-   text: 'Jumpsuits',
-},
-
-{
-        
-    img:Img2,  
-    text: 'Tops',
- },
- 
- {
-        
-    img:Img3,
-    text: 'Shorts',
- },
- 
- {
-        
-    img:Img4,
-    text: 'Knitwear',
- },
- {
-        
-    img:Img5,
-    text: 'Jackets',
- },
-  
- {
-        
-    img:Img6, 
-     text: 'T-Shirts',
- },
-
- {
+  {
+    img: Img6,
+    text: "T-Shirts",
+    id: 6,
+  },
+   {
         
     img:Img7,
     text: 'Tees & Tanks',
+    id: 7,
  },
  {
         
     img:Img8,
     text: 'Skirts',
+    id: 8,
  },
   
  {
         
     img:Img9, 
      text: 'Jeans',
+     id: 9,
  },
- 
 ];
 
 
