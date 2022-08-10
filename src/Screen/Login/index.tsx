@@ -8,7 +8,8 @@ import NavBar from "../../Components/NavBar";
 import { Container, FlexBox } from "../../GlobelStyle";
 import useForm from "../../hooks/useForm";
 import { RootState } from "../../Redux";
-import { login, testLogin } from "../../Redux/features/Auth/authSlice";
+import { fetchToken } from "../../Redux/features/Auth/authAction";
+import { login } from "../../Redux/features/Auth/authSlice";
 
 const Login = () => {
   const isAuthed = useSelector((state: RootState) => state.auth.isAuthed);
@@ -42,8 +43,7 @@ const Login = () => {
       email: values.email,
       password: values.password,
     };
-    dispatch(testLogin(obj));
-
+    dispatch(fetchToken(obj));
     // setTimeout(() => {
     //   const result = localStorage.getItem("userToken");
     //   if (result !== null) {
