@@ -1,81 +1,60 @@
-import { Button, FormGroup, Input, TextField } from "@mui/material";
-import axios from "axios";
+import { Button, FormGroup, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { isFloat64Array } from "util/types";
 import NavBar from "../../Components/NavBar";
 import { Container, FlexBox } from "../../GlobelStyle";
 import useForm from "../../hooks/useForm";
-import { RootState } from "../../Redux";
+import { RootState, useAppDispatch } from "../../Redux";
 import { fetchToken } from "../../Redux/features/Auth/authAction";
-import { login } from "../../Redux/features/Auth/authSlice";
 
 const Login = () => {
   const isAuthed = useSelector((state: RootState) => state.auth.isAuthed);
-  const dispatch = useDispatch();
+  const errorMsg = useSelector((state: RootState) => state.auth.errorMsg);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { values, handelChange } = useForm({
     email: "",
     password: "",
   });
   const [show, setShow] = useState(false);
 
-  const handleLogin = async (email: string, password: string) => {
-    const res = await axios
-      .post("https://pro-commerce1.herokuapp.com/api/v1/login", {
-        email: email,
-        password: password,
-      })
-      .catch((error) => {});
-
-    if (res) {
-      localStorage.setItem("userToken", res.data.token);
-
-      return res;
-    } else {
-      return null;
-    }
-  };
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    const obj = {
-      email: values.email,
-      password: values.password,
-    };
-    dispatch(fetchToken(obj));
-    // setTimeout(() => {
-    //   const result = localStorage.getItem("userToken");
-    //   if (result !== null) {
-    //     dispatch(login(result));
-    //   }
-    // }, 1000);
+    dispatch(
+      fetchToken({
+        email: values.email,
+        password: values.password,
+      })
+    );
   };
+
   const handleEnter: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      handleLogin(values.email, values.password);
-
-      setTimeout(() => {
-        const result = localStorage.getItem("userToken");
-        if (result !== null) {
-          dispatch(login(result));
-        }
-      }, 1000);
+      dispatch(
+        fetchToken({
+          email: values.email,
+          password: values.password,
+        })
+      );
     }
   };
+
   useEffect(() => {
-    if (isAuthed) {
-      setTimeout(() => navigate("/"), 3000);
+    if (isAuthed === true) {
+      setTimeout(() => navigate("/"), 2000);
     }
   }, [isAuthed]);
 
-  if (!isAuthed) {
+  if (isAuthed === false) {
     return (
       <Container>
         <FlexBox style={{ flexDirection: "column" }}>
           <NavBar style={{ color: "black" }} />
           <FormGroup style={{ margin: "100px 0" }}>
+            <p>{errorMsg === "something went wrong" ? errorMsg : ""}</p>
             <TextField
               onChange={handelChange}
               onKeyPress={handleEnter}
@@ -87,6 +66,7 @@ const Login = () => {
               value={values.email}
               autoFocus
             />
+            <p>{errorMsg === "email not found" ? errorMsg : ""}</p>
             <div
               style={{
                 display: "flex",
@@ -102,6 +82,7 @@ const Login = () => {
                 variant="standard"
                 value={values.password}
               />
+              <p>{errorMsg === "incorrect password" ? errorMsg : ""}</p>
               <Button onClick={() => setShow(!show)}>
                 {show ? "hide" : "show"}
               </Button>

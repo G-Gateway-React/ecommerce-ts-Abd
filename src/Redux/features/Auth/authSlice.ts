@@ -5,6 +5,7 @@ let Authed_Storage_Key = "authed";
 export interface AuthState {
   isAuthed: boolean;
   userToken?: string | null;
+  errorMsg?: string | undefined;
 }
 
 export interface actionType {
@@ -20,11 +21,11 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<string>) => {
-      state.userToken = action.payload;
-      localStorage.setItem(Authed_Storage_Key, "1");
-      state.isAuthed = true;
-    },
+    // login: (state, action: PayloadAction<string>) => {
+    //   state.userToken = action.payload;
+    //   localStorage.setItem(Authed_Storage_Key, "1");
+    //   state.isAuthed = true;
+    // },
     logout: (state) => {
       state.isAuthed = false;
       state.userToken = "";
@@ -33,12 +34,23 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchToken.pending, (state, action) => {
-      console.log(action.payload);
+    builder.addCase(fetchToken.pending, (state) => {
+      state.isAuthed = false;
+    });
+    builder.addCase(fetchToken.fulfilled, (state, action) => {
+      state.isAuthed = true;
+      state.userToken = action.payload?.token;
+      localStorage.setItem("userToken", state.userToken);
+      localStorage.setItem(Authed_Storage_Key, "1");
+    });
+    builder.addCase(fetchToken.rejected, (state, action) => {
+      state.isAuthed = false;
+      state.errorMsg = "";
+      state.errorMsg = action.payload?.msg;
     });
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;

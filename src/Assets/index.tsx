@@ -142,20 +142,24 @@ export const ImgSecCard = [
   {
     img: Img10,
     text: "MORE INFO",
+    id: 1,
   },
 
   {
     img: Img11,
     text: "MORE INFO",
+    id: 2,
   },
 
   {
     img: Img12,
     text: "MORE INFO",
+    id: 3,
   },
 
   {
     img: Img13,
     text: "MORE INFO",
+    id: 4,
   },
 ];
