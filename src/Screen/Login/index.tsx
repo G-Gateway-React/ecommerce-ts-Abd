@@ -39,17 +39,13 @@ const Login = () => {
   };
   const handleClick: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
-    const obj = {
-      email: values.email,
-      password: values.password,
-    };
-    dispatch(fetchToken(obj));
-    // setTimeout(() => {
-    //   const result = localStorage.getItem("userToken");
-    //   if (result !== null) {
-    //     dispatch(login(result));
-    //   }
-    // }, 1000);
+    handleLogin(values.email, values.password);
+    setTimeout(() => {
+      const result = localStorage.getItem("userToken");
+      if (result !== null) {
+        dispatch(login(result));
+      }
+    }, 1000);
   };
   const handleEnter: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (e.key === "Enter") {
