@@ -7,10 +7,12 @@ import { FlexBox } from "../../GlobelStyle";
 import { Button, TextField, Typography } from "@mui/material";
 import { FormWrapper } from "./style";
 import { useSelector } from "react-redux";
-import { RootState } from "../../Redux";
+import { RootState, useAppDispatch } from "../../Redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { signUpThunk } from "../../Redux/features/Auth/authAction";
+import toast from "react-hot-toast";
+// import { signedUp } from "../../Redux/features/Auth/authSlice";
 
 interface IFormInputs {
   userName: string;
@@ -28,9 +30,12 @@ const schema = yup.object({
     ),
 });
 const SignUp = () => {
-  const isAuthed = useSelector((state: RootState) => state.auth.isAuthed);
+  const { isAuthed, errorMsg, isSignedUp } = useSelector(
+    (state: RootState) => state.auth
+  );
   const navigate = useNavigate();
-  const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useAppDispatch();
+
   const [show, setShow] = useState(false);
   const {
     register,
@@ -41,22 +46,24 @@ const SignUp = () => {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (data: IFormInputs) => {
-    let errorMessage1 = "";
-    await axios
-      .post("https://pro-commerce1.herokuapp.com/api/v1/signup", {
+    const res = await dispatch(
+      signUpThunk({
         email: data.email,
         password: data.password,
-        name: data.userName,
+        userName: data.userName,
       })
-      .catch((error) => {
-        errorMessage1 = error.response.data.msg;
-        console.clear();
+    );
+    // console.log();
+
+    if (res.meta.requestStatus === "fulfilled") {
+      toast.success("regitered successfully", {
+        position: "bottom-left",
+        duration: 2500,
       });
-    if (errorMessage1 !== "") {
-      setErrorMessage(errorMessage1);
-    } else {
-      setErrorMessage("");
       reset();
+      // setTimeout(() => {
+      //   navigate("/login");
+      // }, 2000);
     }
   };
   useEffect(() => {
@@ -114,7 +121,7 @@ const SignUp = () => {
                 fullWidth
                 {...register("email")}
               />
-              <p>{errorMessage !== "" ? errorMessage : ""}</p>
+              <p>{errorMsg !== "" ? errorMsg : ""}</p>
               <p>{errors.email?.message}</p>
               <TextField
                 id="standard-required"

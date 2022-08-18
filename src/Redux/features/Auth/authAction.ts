@@ -11,7 +11,9 @@ interface loginResult {
   token: string;
   user: User;
 }
+type signUpResult = loginResult;
 
+//  loginAuthentication
 export const fetchToken = createAsyncThunk<
   {
     token: string;
@@ -59,3 +61,41 @@ export const fetchToken = createAsyncThunk<
     }
   }
 );
+
+export const signUpThunk = createAsyncThunk<
+  {
+    user: User;
+  },
+  {
+    userName: string;
+    email: string;
+    password: string;
+  },
+  {
+    rejectValue: {
+      msg: string;
+    };
+  }
+>("signup/user", async ({ userName, email, password }, thunkApi) => {
+  try {
+    const { data } = await axios.post<signUpResult>(
+      "https://pro-commerce1.herokuapp.com/api/v1/signup",
+      {
+        email,
+        password,
+        name: userName,
+      }
+    );
+    return data;
+  } catch (e: any) {
+    if (e.response?.data?.msg) {
+      return thunkApi.rejectWithValue({
+        msg: e.response.data.msg,
+      });
+    } else {
+      return thunkApi.rejectWithValue({
+        msg: "somthing went wrong",
+      });
+    }
+  }
+});
