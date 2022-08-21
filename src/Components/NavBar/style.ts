@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Images } from "../../Assets";
+import { heroImages } from "../../Assets";
 import { FlexBox } from "../../GlobelStyle";
 
 export const NavWrapper = styled(FlexBox)`
@@ -26,7 +26,7 @@ export const Item = styled(FlexBox)`
 export const Logo = styled(FlexBox)`
   width: 20%;
   height: 100px;
-  background: url(${Images.Logo}) center center no-repeat;
+  background: url(${heroImages.Logo}) center center no-repeat;
   background-size: auto;
 `;
 

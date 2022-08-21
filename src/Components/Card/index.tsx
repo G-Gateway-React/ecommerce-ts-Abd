@@ -1,22 +1,22 @@
 import CardMedia from "@mui/material/CardMedia";
-import { ImagesCard } from "../../Assets/index";
-import { SectionCard, StyledCard, H5 } from "./style";
+import { StyledCard, H5 } from "./style";
 // import { Typography } from '@mui/material';
 
-export default function ImgMediaCard() {
+interface Props {
+  id: number;
+  img: string;
+  text: string;
+}
+export default function ImgMediaCard({ id, img, text }: Props) {
   return (
-    <SectionCard>
-      {ImagesCard.map((imges) => (
-        <StyledCard key={imges.id}>
-          <CardMedia
-            sx={{ width: "100%" }}
-            component="img"
-            alt="green iguana"
-            image={imges.img}
-          />
-          <H5>{imges.text}</H5>
-        </StyledCard>
-      ))}
-    </SectionCard>
+    <StyledCard key={id}>
+      <CardMedia
+        sx={{ width: "100%" }}
+        component="img"
+        alt="green iguana"
+        image={img}
+      />
+      <H5>{text}</H5>
+    </StyledCard>
   );
 }

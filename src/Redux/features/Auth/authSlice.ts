@@ -56,9 +56,10 @@ export const authSlice = createSlice({
     builder.addCase(signUpThunk.fulfilled, (state, action) => {
       state.errorMsg = "";
       state.isSignedUp = true;
-      console.log("tam");
     });
     builder.addCase(signUpThunk.rejected, (state, action) => {
+      console.log(action.payload?.msg);
+
       state.errorMsg = "";
       state.errorMsg = action.payload?.msg;
     });

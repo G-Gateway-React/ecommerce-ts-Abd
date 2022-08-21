@@ -11,8 +11,7 @@ import { RootState, useAppDispatch } from "../../Redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signUpThunk } from "../../Redux/features/Auth/authAction";
-import toast from "react-hot-toast";
-// import { signedUp } from "../../Redux/features/Auth/authSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 interface IFormInputs {
   userName: string;
@@ -24,15 +23,14 @@ const schema = yup.object({
   email: yup.string().email().required(),
   password: yup
     .string()
+    .required()
     .matches(
       /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
       "passwoed must contains at least : Capital and small letter , number and special charechter @#$"
     ),
 });
 const SignUp = () => {
-  const { isAuthed, errorMsg, isSignedUp } = useSelector(
-    (state: RootState) => state.auth
-  );
+  const { isAuthed, errorMsg } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -46,25 +44,23 @@ const SignUp = () => {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (data: IFormInputs) => {
-    const res = await dispatch(
-      signUpThunk({
-        email: data.email,
-        password: data.password,
-        userName: data.userName,
-      })
-    );
-    // console.log();
+    try {
+      const res = await dispatch(
+        signUpThunk({
+          email: data.email,
+          password: data.password,
+          userName: data.userName,
+        })
+      );
+      if (signUpThunk.fulfilled.match(res)) {
+        toast.success("regitered successfully ... redirect to login");
 
-    if (res.meta.requestStatus === "fulfilled") {
-      toast.success("regitered successfully", {
-        position: "bottom-left",
-        duration: 2500,
-      });
-      reset();
-      // setTimeout(() => {
-      //   navigate("/login");
-      // }, 2000);
-    }
+        reset();
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
+    } catch (e) {}
   };
   useEffect(() => {
     if (isAuthed) {
@@ -80,6 +76,7 @@ const SignUp = () => {
             color: "black",
           }}
         />
+        <Toaster />
         <FlexBox
           style={{
             justifyContent: "center",

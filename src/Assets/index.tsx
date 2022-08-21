@@ -14,7 +14,7 @@ import Img11 from "./imgCard11.png";
 import Img12 from "./imgCard12.png";
 import Img13 from "./imgCard13.png";
 
-export const Images = {
+export const heroImages = {
   Logo,
   Hero,
 };
@@ -85,7 +85,7 @@ export const AuthedRightNavbarData = [
   },
 ];
 
-export const ImagesCard = [
+export const Images = [
   {
     img: Img1,
     text: "Jumpsuits",

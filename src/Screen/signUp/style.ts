@@ -5,4 +5,7 @@ export const FormWrapper = styled.form`
   flex-direction: column;
   align-items: flex-start;
   margin: 0 80px;
+  p {
+    color: red;
+  }
 `;
