@@ -13,6 +13,15 @@ import Img10 from "./imgCard10.png";
 import Img11 from "./imgCard11.png";
 import Img12 from "./imgCard12.png";
 import Img13 from "./imgCard13.png";
+import ImgTop1 from './TopCard1.png';
+import ImgTop2 from './TopCard2.png';
+import ImgTop3 from './TopCard3.png';
+import ImgTop4 from './TopCard4.png';
+import ImgTop5 from './TopCard5.png';
+import ImgTop6 from './TopCard6.png';
+import ImgTop7 from './TopCard7.png';
+import ImgTop8 from './TopCard8.png';
+import ImgTop9 from './TopCard9.png';
 
 export const heroImages = {
   Logo,
@@ -163,3 +172,58 @@ export const ImgSecCard = [
     id: 4,
   },
 ];
+export const TopCards = [
+  {
+    img: ImgTop1,
+    text: "ADD TO BAG",
+   
+  },
+
+  {
+    img: ImgTop2,
+    text: "ADD TO BAG",
+
+  },
+
+  {
+    img: ImgTop3,
+    text: "ADD TO BAG",
+ 
+  },
+
+  {
+    img: ImgTop4,
+    text: "ADD TO BAG",
+  
+  },
+  {
+    img: ImgTop5,
+    text: "ADD TO BAG",
+    
+  },
+
+  {
+    img: ImgTop6,
+    text: "ADD TO BAG",
+   
+  },
+  
+  {
+    img: ImgTop7,
+    text: "ADD TO BAG",
+   
+  },
+
+  {
+    img: ImgTop8,
+    text: "ADD TO BAG",
+   
+  },
+
+  {
+    img: ImgTop9,
+    text: "ADD TO BAG",
+   
+  },
+
+]

@@ -11,7 +11,7 @@ import { RootState, useAppDispatch } from "../../Redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signUpThunk } from "../../Redux/features/Auth/authAction";
-import toast, { Toaster } from "react-hot-toast";
+//import toast, { Toaster } from "react-hot-toast";
 
 interface IFormInputs {
   userName: string;
@@ -53,7 +53,7 @@ const SignUp = () => {
         })
       );
       if (signUpThunk.fulfilled.match(res)) {
-        toast.success("regitered successfully ... redirect to login");
+       // toast.success("regitered successfully ... redirect to login");
 
         reset();
         setTimeout(() => {
@@ -76,7 +76,7 @@ const SignUp = () => {
             color: "black",
           }}
         />
-        <Toaster />
+        {/* <Toaster /> */}
         <FlexBox
           style={{
             justifyContent: "center",
