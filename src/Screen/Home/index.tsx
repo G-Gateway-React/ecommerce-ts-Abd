@@ -26,8 +26,6 @@ const Home: React.FC = () => {
 
       <H3>NEW BOOTS ADDED RECENTLY</H3>
       <SecoCard />
-
-      <Footer />
     </div>
   );
 };
