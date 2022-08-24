@@ -1,6 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Categories from "./Screen/Categories";
+
+import Footer from "./Components/Footer";
+import Cart from "./Screen/Cart";
+
 import Home from "./Screen/Home";
 import Login from "./Screen/Login";
 import SignUp from "./Screen/signUp";
@@ -13,7 +17,11 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/categories" element={<Categories />} />
+
+        <Route path="/cart" element={<Cart />} />
+
       </Routes>
+      <Footer />
     </div>
   );
 };

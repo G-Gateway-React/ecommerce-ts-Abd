@@ -1,5 +1,5 @@
 import { StyledInput, StyledSignUp } from "./style";
-import { Container, Grid } from "@mui/material";
+import { Container, CssBaseline, Grid } from "@mui/material";
 import LinkSection from "../LinkSection/index";
 
 function Footer() {

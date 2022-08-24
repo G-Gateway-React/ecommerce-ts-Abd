@@ -61,7 +61,8 @@ export const RightNavbarData = [
   },
   {
     text: "BAG (2)",
-    path: "/",
+    path: "/cart",
+    color: "#D1094B",
     id: 3,
   },
   {
@@ -84,7 +85,8 @@ export const AuthedRightNavbarData = [
   },
   {
     text: "BAG (2)",
-    path: "/",
+    path: "/cart",
+    color: "#D1094B",
     id: 3,
   },
   {
@@ -227,3 +229,51 @@ export const TopCards = [
   },
 
 ]
+
+
+export const Colors = [
+  {
+    color: "#DFDED9",
+    id: 1,
+  },
+  {
+    color: "#FF6E61",
+    id: 2,
+  },
+  {
+    color: "#FFBC00",
+    id: 3,
+  },
+  {
+    color: "#293688",
+    id: 4,
+  },
+  {
+    color: "#9747FF",
+    id: 5,
+  },
+  {
+    color: "#D1094B",
+    id: 6,
+  },
+  {
+    color: "#000F08",
+    id: 7,
+  },
+  {
+    color: "#3A3A3A",
+    id: 8,
+  },
+  {
+    color: "#334ADF",
+    id: 9,
+  },
+  {
+    color: "#FFA7A7",
+    id: 10,
+  },
+  {
+    color: "#1AC20C",
+    id: 11,
+  },
+];

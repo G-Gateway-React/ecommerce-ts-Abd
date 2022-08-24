@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   AuthedRightNavbarData,
   LeftNavbarData,
@@ -6,7 +6,7 @@ import {
 } from "../../Assets";
 import { Item, LeftSection, Logo, NavWrapper, RightSection } from "./style";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux";
 import { logout } from "../../Redux/features/Auth/authSlice";
@@ -20,10 +20,14 @@ const NavBar: React.FC<NavbarProps> = (props) => {
   const isAuthed = useSelector((state: RootState) => state.auth.isAuthed);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login");
   };
+  // useEffect(() => {
+  //   console.log(pathname);
+  // }, [pathname]);
   return (
     <Container>
       <NavWrapper>
@@ -42,7 +46,13 @@ const NavBar: React.FC<NavbarProps> = (props) => {
             ? RightNavbarData.map((item) => {
                 return (
                   <Item key={item.id} style={props.style}>
-                    <Link to={item.path}>
+                    <Link
+                      to={item.path}
+                      style={{
+                        color:
+                          item.color && pathname !== "/" ? item.color : "white",
+                      }}
+                    >
                       {item.text ? item.text : <FavoriteBorderIcon />}
                     </Link>
                   </Item>
@@ -52,14 +62,25 @@ const NavBar: React.FC<NavbarProps> = (props) => {
                 return (
                   <Item key={item.id} style={props.style}>
                     {item.text !== "LOG OUT" ? (
-                      <Link to={item.path}>
+                      <Link
+                        to={item.path}
+                        style={{
+                          color:
+                            item.color && pathname !== "/"
+                              ? item.color
+                              : props.style?.color,
+                        }}
+                      >
                         {item.text ? item.text : <FavoriteBorderIcon />}
                       </Link>
                     ) : (
                       <Item
                         key={item.id}
                         onClick={handleLogout}
-                        style={{ cursor: "pointer", color: "black" }}
+                        style={{
+                          cursor: "pointer",
+                          color: pathname !== "/" ? "black" : "white",
+                        }}
                       >
                         {item.text}
                       </Item>
